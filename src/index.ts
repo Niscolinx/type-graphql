@@ -18,7 +18,6 @@ const main = async() => {
         resolvers: [HelloResolver]
     })
 
-
     const apolloServer = new ApolloServer({schema})
 
     const app = Express.default()
