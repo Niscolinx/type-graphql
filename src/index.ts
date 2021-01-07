@@ -25,7 +25,7 @@ const main = async() => {
     apolloServer.applyMiddleware({app})
 
     app.listen(4000, () => {
-        console.log('the server is running on port 4000')
+        console.log('the server is running on port http://localhost:4000/graphql')
     })
 }
 
