@@ -1,3 +1,4 @@
+import { IsEmailAlreadyExist } from './emailExits';
 import { Length, IsEmail } from 'class-validator'
 import { InputType, Field } from 'type-graphql'
 
@@ -13,6 +14,7 @@ export class RegisterInput {
 
     @Field()
     @IsEmail()
+    @IsEmailAlreadyExist()
     email: string
 
     @Field()
