@@ -11,7 +11,8 @@ export class RegisterResolver {
     }
 
     @Mutation(() => String)
-    async Register(){
-        
+    async register(){
+        @Arg("firstName") firstName: string,
+
     }
 }
