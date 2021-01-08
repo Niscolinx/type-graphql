@@ -1,12 +1,23 @@
-import { MaxLength, Length } from 'class-validator'
+import { Length, IsEmail } from 'class-validator'
+import { InputType, Field } from 'type-graphql'
 
 @InputType()
-export class RecipeInput {
+export class RegisterInput {
     @Field()
-    @MaxLength(30)
-    title: string
+    @Length(1, 255)
+    firstName: string
+    
+    @Field()
+    @Length(1, 255)
+    lastName: string
 
-    @Field({ nullable: true })
-    @Length(30, 255)
-    description?: string
+    @Field()
+    @IsEmail()
+    email: string
+
+    @Field()
+    @Length(1, 255)
+    password: string
+
+ 
 }
