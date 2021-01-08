@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Arg, FieldResolver, Root } from 'type-graphq
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
 
-@Resolver()
+@Resolver(User)
 export class RegisterResolver {
     //Sometimes graphql needs a query to be stable, that's the reason for leaving this here
     @Query(() => String)
