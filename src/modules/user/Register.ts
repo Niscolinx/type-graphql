@@ -17,7 +17,7 @@ export class RegisterResolver {
         @Arg('lastName') lastName: string,
         @Arg('email') email: string,
         @Arg('password') password: string
-    )
+    ): Promise<User>
      {
          const hashedPassword = await bcrypt.hash(password, 12)
 
@@ -25,6 +25,6 @@ export class RegisterResolver {
              firstName, lastName, email, password: hashedPassword
          }).save()
 
-         console.log('the user', user)
+         return user
      }
 }
