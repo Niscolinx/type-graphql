@@ -25,6 +25,6 @@ export class RegisterResolver {
              firstName, lastName, email, password: hashedPassword
          }).save()
 
-         
+         console.log('the user', user)
      }
 }
