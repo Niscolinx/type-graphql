@@ -13,17 +13,16 @@ import { RegisterInput } from './userInputs'
 @Resolver(User)
 export class LoginResolver {
     @Mutation(() => User)
-    async register(
-        @Arg('data') { firstName, lastName, email, password }: RegisterInput
+    async Login(
+        @Arg('email') email: string,
+        @Arg('password') password: string
     ): Promise<User> {
+
+        conn
+
         const hashedPassword = await bcrypt.hash(password, 12)
 
-        const user = await User.create({
-            firstName,
-            lastName,
-            email,
-            password: hashedPassword,
-        }).save()
+       
 
         return user
     }
