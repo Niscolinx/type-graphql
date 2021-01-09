@@ -10,7 +10,7 @@ import { User } from '../../entity/User'
 export class isEmailAlreadyExitConstraint
     implements ValidatorConstraintInterface {
     validate(email: string) {
-        return User.findOne(email).then((user) => {
+        return User.findOne({where: {email}}).then((user) => {
             if (user) return false
             return true
         })
