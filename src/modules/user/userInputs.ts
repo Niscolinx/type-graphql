@@ -1,4 +1,4 @@
-import { IsEmailAlreadyExist } from './doesEmailExit';
+import { IsEmailAlreadyExist } from './doesEmailExist';
 import { Length, IsEmail } from 'class-validator'
 import { InputType, Field } from 'type-graphql'
 

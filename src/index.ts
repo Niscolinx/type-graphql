@@ -6,6 +6,8 @@ import { createConnection } from 'typeorm'
 import { RegisterResolver } from './modules/user/Register'
 import session from 'express-session'
 import connectRedis from 'connect-redis'
+import { redis } from './redis'
+import cors from 'cors'
 
 const main = async () => {
     await createConnection()
@@ -14,11 +16,19 @@ const main = async () => {
         resolvers: [RegisterResolver],
     })
 
-    const apolloServer = new ApolloServer({ schema })
+    const apolloServer = new ApolloServer({
+        schema,
+        context: ({ req }: any) => ({ req }),
+    })
 
     const app = Express()
 
     const RedisStore = connectRedis(session)
+
+    app.use(cors({
+        credentials: true,
+        origin: 'http://localhost:3000'
+    }))
 
     app.use(
         session({
