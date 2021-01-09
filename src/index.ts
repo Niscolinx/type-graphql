@@ -5,6 +5,7 @@ import { buildSchema } from 'type-graphql'
 import { createConnection } from 'typeorm'
 import { RegisterResolver } from './modules/user/Register'
 import session from 'express-session'
+import connectRedis from 'connect-redis'
 
 const main = async () => {
     await createConnection()
@@ -16,6 +17,8 @@ const main = async () => {
     const apolloServer = new ApolloServer({ schema })
 
     const app = Express()
+
+    const RedisStore = connectRedis(session)
 
     app.use(
         session({
@@ -29,8 +32,8 @@ const main = async () => {
             cookie: {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                maxAge: 1000 * 60 * 60 * 24 * 7 * 365 //7 Years
-            }
+                maxAge: 1000 * 60 * 60 * 24 * 7 * 365, //7 Years
+            },
         }) as any
     )
 
