@@ -17,12 +17,17 @@ export class LoginResolver {
         @Arg('email') email: string,
         @Arg('password') password: string
     ): Promise<User> {
+        const user = await User.findOne({ where: { email } })
 
-        conn
+        if (!user) {
+            return null
+        }
 
-        const hashedPassword = await bcrypt.hash(password, 12)
+        const valid = await bcrypt.compare(password, user.password)
 
-       
+        if (!valid) {
+            return null
+        }
 
         return user
     }
