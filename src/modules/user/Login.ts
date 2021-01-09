@@ -11,19 +11,7 @@ import { User } from '../../entity/User'
 import { RegisterInput } from './userInputs'
 
 @Resolver(User)
-export class RegisterResolver {
-    //Sometimes graphql needs a query to be stable, that's the reason for leaving this here
-    @Query(() => String)
-    async hello() {
-        // fake async in this example
-        return 'Hello World!'
-    }
-
-    @FieldResolver()
-    async name(@Root() parent: User) {
-        return `${parent.firstName} ${parent.lastName}`
-    }
-
+export class LoginResolver {
     @Mutation(() => User)
     async register(
         @Arg('data') { firstName, lastName, email, password }: RegisterInput
