@@ -1,14 +1,6 @@
-import {
-    Resolver,
-    Query,
-    Mutation,
-    Arg,
-    FieldResolver,
-    Root,
-} from 'type-graphql'
+import { Resolver, Query, Mutation, Arg } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
-import { RegisterInput } from './userInputs'
 
 @Resolver(User)
 export class LoginResolver {
@@ -20,7 +12,7 @@ export class LoginResolver {
         const user = await User.findOne({ where: { email } })
 
         if (!user) {
-            return firstName
+            return null
         }
 
         const valid = await bcrypt.compare(password, user.password)
