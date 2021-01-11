@@ -1,3 +1,4 @@
+import { SessionData } from './../types/Session';
 import { MyContext } from './../types/MyContext';
 import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
@@ -9,7 +10,7 @@ export class LoginResolver {
     async Login(
         @Arg('email') email: string,
         @Arg('password') password: string,
-        @Ctx() ctx:MyContext
+        @Ctx() ctx:SessionData
     ): Promise<User | null> {
         const user = await User.findOne({ where: { email } })
 
@@ -23,7 +24,9 @@ export class LoginResolver {
             return null
         }
 
-        ctx.req.session.userId = user.id
+      //  ctx.req.session.userId = user.id
+
+        
         return user
     }
 }
