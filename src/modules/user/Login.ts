@@ -1,11 +1,20 @@
-import { SessionData } from './../types/Session';
-import { MyContext } from './../types/MyContext';
+//import {SessionData} from './../types/Session';
+//import { MyContext } from './../types/MyContext';
 import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
 
+import { Request } from 'express'
+
 @Resolver(User)
+declare module 'express-session' {
+    export interface SessionData {
+        userId: { [key: string]: any }
+        req: Request
+    }
+}
 export class LoginResolver {
+    
     @Mutation(() => User, {nullable: true})
     async Login(
         @Arg('email') email: string,
@@ -26,7 +35,7 @@ export class LoginResolver {
 
       //  ctx.req.session.userId = user.id
 
-        ctx.req
+        ctx.req.session.userId = user.id
         return user
     }
 }
