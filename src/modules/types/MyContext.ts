@@ -1,5 +1,5 @@
 import {Request} from 'express'
 
-export const interface {
+export interface MyContext{
     req: Request
 }

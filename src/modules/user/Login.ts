@@ -1,3 +1,4 @@
+import { MyContext } from './../types/MyContext';
 import { Resolver, Mutation, Arg } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
@@ -8,6 +9,7 @@ export class LoginResolver {
     async Login(
         @Arg('email') email: string,
         @Arg('password') password: string
+        @MyContext()
     ): Promise<User | null> {
         const user = await User.findOne({ where: { email } })
 
