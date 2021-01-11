@@ -18,13 +18,12 @@ export class LoginResolver {
         }
 
         const valid = await bcrypt.compare(password, user.password)
-        console.log("valid", valid)
 
         if (!valid) {
             return null
         }
 
-        ctx.req.session.id = user.id.toString()
+        ctx.req.session.userId = user.id
         return user
     }
 }
