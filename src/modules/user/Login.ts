@@ -1,5 +1,5 @@
 import { MyContext } from './../types/MyContext';
-import { Resolver, Mutation, Arg } from 'type-graphql'
+import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
 
@@ -8,8 +8,8 @@ export class LoginResolver {
     @Mutation(() => User, {nullable: true})
     async Login(
         @Arg('email') email: string,
-        @Arg('password') password: string
-        @MyContext()
+        @Arg('password') password: string,
+        @Ctx() ctx:MyContext
     ): Promise<User | null> {
         const user = await User.findOne({ where: { email } })
 
@@ -24,6 +24,7 @@ export class LoginResolver {
             return null
         }
 
+        console.log('the context', ctx)
         return user
     }
 }
