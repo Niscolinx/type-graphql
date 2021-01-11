@@ -4,11 +4,11 @@ import { User } from '../../entity/User'
 
 @Resolver(User)
 export class LoginResolver {
-    @Mutation(() => User)
+    @Mutation(() => User, {nullable: true})
     async Login(
         @Arg('email') email: string,
         @Arg('password') password: string
-    ): Promise<User> {
+    ): Promise<User | null> {
         const user = await User.findOne({ where: { email } })
 
         if (!user) {
