@@ -1,3 +1,4 @@
+import { LoginResolver } from './modules/user/Login';
 import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server-express'
 import Express from 'express'
@@ -13,7 +14,7 @@ const main = async () => {
     await createConnection()
 
     const schema = await buildSchema({
-        resolvers: [RegisterResolver],
+        resolvers: [RegisterResolver, LoginResolver],
     })
 
     const apolloServer = new ApolloServer({
