@@ -1,4 +1,4 @@
-import { MyContext } from './../types/MyContext';
+import { MyContext } from '../../types/MyContext';
 import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
