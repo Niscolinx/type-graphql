@@ -26,7 +26,7 @@ export class LoginResolver {
 
       //  ctx.req.session.userId = user.id
 
-        
+        ctx
         return user
     }
 }
