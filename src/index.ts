@@ -11,12 +11,6 @@ import { redis } from './redis'
 import cors from 'cors'
 
 
-declare module 'express-session' {
-    export interface SessionData {
-        userId: number
-        req: Request
-    }
-}
 const main = async () => {
     await createConnection()
 
