@@ -1,6 +1,7 @@
 {
     "name": "graphql-ts-server-boilerplate",
     "version": "0.0.1",
+    "license": "MIT",
     "description": "Awesome project developed with TypeORM.",
     "devDependencies": {
         "@gql2ts/types": "^1.8.0",
