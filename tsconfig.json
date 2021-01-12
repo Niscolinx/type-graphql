@@ -27,14 +27,14 @@
     "resolveJsonModule": true,
     "baseUrl": "."
   },
-  "typeRoots": [
-    "./types/index.ts", "node_modules/@types"
-  ],
+  // "typeRoots": [
+  //   "./types", "node_modules/@types"
+  // ],
   "exclude": [
     "node_modules"
   ],
   "include": [
     "./src/**/*.tsx",
-    "./src/**/*.ts"
+    "./src/**/*.ts", "src/modules/user/Login.ts"
   ]
 }
