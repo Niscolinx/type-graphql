@@ -25,11 +25,11 @@ export class LoginResolver {
             return null
         }
 
-      //  ctx.req.session.userId = user.id
+      
+        console.log('the context', ctx)
+       // const theSession = ctx.req.session
 
-        const theSession = ctx.req.session
-
-        theSession.userId = user.id
+        //theSession.userId = user.id
         return user
     }
 }
