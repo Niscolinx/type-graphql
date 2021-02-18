@@ -5,7 +5,6 @@ import { User } from '../../entity/User'
 
 
 @Resolver(User)
-console.log('login resolver')
 export class LoginResolver {
     
     @Mutation(() => User, {nullable: true})
@@ -27,7 +26,10 @@ export class LoginResolver {
         }
 
       
-        console.log('the context', ctx)
+        console.log('the context =================', ctx.req.session)
+        console.log('the user id', user.id)
+
+        //ctx.req.session.userId = user.id
        // const theSession = ctx.req.session
 
         //theSession.userId = user.id
