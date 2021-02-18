@@ -5,6 +5,7 @@ import { User } from '../../entity/User'
 
 
 @Resolver(User)
+console.log('login resolver')
 export class LoginResolver {
     
     @Mutation(() => User, {nullable: true})
