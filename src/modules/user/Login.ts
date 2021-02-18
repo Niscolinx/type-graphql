@@ -1,8 +1,14 @@
-import { MyContext } from '../../types/MyContext';
+import { MyContext } from '../../typing-stubs/MyContext';
 import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
 
+
+declare module 'express-session' {
+    interface Session {
+        userId: number
+    }
+}
 
 @Resolver(User)
 export class LoginResolver {
@@ -29,7 +35,7 @@ export class LoginResolver {
         console.log('the context =================', ctx.req.session)
         console.log('the user id', user.id)
 
-        //ctx.req.session.userId = user.id
+        ctx.req.session!.userId = user.id
        // const theSession = ctx.req.session
 
         //theSession.userId = user.id
