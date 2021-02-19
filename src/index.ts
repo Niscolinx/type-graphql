@@ -20,7 +20,6 @@ const main = async () => {
 
     const apolloServer = new ApolloServer({
         schema,
-        
         context: ({ req }: any) => ({ req }),
     })
 
