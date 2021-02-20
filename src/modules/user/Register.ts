@@ -1,11 +1,13 @@
-import { Resolver, Query, Mutation, Arg, FieldResolver, Root } from 'type-graphql'
+import { Resolver, Query, Mutation, Arg, FieldResolver, Root, UseMiddleware } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
 import { RegisterInput } from './userInputs'
+import { isAuth } from '../middleware/isAuth'
 
 @Resolver(User)
 export class RegisterResolver {
     //Sometimes graphql needs a query to be stable, that's the reason for leaving this here
+    @UseMiddleware(isAuth)
     @Query(() => String)
     async hello() {
         // fake async in this example
