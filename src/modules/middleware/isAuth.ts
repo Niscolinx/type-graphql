@@ -9,7 +9,7 @@ declare module 'express-session' {
 }
 export const isAuth: MiddlewareFn<MyContext> = async ({ context }, next) => {
     if(!context.req.session.userId){
-        throw new Error('Not authorized')
+        throw new Error('Not authorized!')
     }
 
     return next()
