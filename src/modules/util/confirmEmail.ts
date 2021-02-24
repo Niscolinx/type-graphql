@@ -3,9 +3,9 @@ import {v4} from 'uuid'
 
 
 export const confirmEmail = async(userId: number) => {
-    const id = v4()
+    const token = v4()
 
-    await redis.set(id, userId)
+    await redis.set(token, userId)
 
     return `http://localhost:3000/confirmEmail/${userId}`
 }

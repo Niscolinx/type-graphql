@@ -1,4 +1,5 @@
-import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
+import { redis } from './../../redis';
+import { Resolver, Mutation, Arg } from 'type-graphql'
 import { User } from '../../entity/User'
 
 declare module 'express-session' {
@@ -9,16 +10,24 @@ declare module 'express-session' {
 
 @Resolver()
 export class ConfirmEmailResolver {
-    @Mutation(() => User, { nullable: true })
-    async Login(
-        @Arg('userId') userId: string,
-    ): Promise<User | null> {
+    @Mutation(() => Boolean)
+    async confirm(
+        @Arg('token') token: string,
+    ): Promise<boolean>{
         
+        const userId = await redis.get(token)
+
+        if(!userId){
+            return false
+        }
+    
         const user = User.update(userId, {
             confirmedEmail: true
         })
 
-      return await user.save()
+        await user.save()
+
+        return true
         
     }
 }
