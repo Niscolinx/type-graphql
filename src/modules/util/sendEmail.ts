@@ -23,8 +23,8 @@ export const sendEmail = async(email: string, url: string) => {
         from: '"Fred Foo 👻" <foo@example.com>', // sender address
         to: email, // list of receivers
         subject: 'From Send Email Nodemailer', // Subject line
-        text: `Your email confirmation`, // plain text body
-        html: `<a href='${url}> ${url} </a>'`, // html body
+        text: `Your email confirmation <a href=${url}> ${url} </a>`, // plain text body
+        html: `Click <a href=${url}> ${url} </a> to confirm your email`, // html body
     })
 
     console.log('Message sent: %s', info.messageId)

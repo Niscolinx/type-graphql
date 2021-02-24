@@ -1,4 +1,4 @@
-import { confirmEmail } from './../util/confirmEmail';
+import { confirmEmailUrl } from '../util/confirmEmailUrl';
 import { sendEmail } from './../util/sendEmail';
 import { Resolver, Query, Mutation, Arg, FieldResolver, Root, UseMiddleware } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
@@ -34,7 +34,7 @@ export class RegisterResolver {
          }).save()
 
          console.log('registered user', user)
-         await sendEmail(email, await confirmEmail(user.id))
+         await sendEmail(email, await confirmEmailUrl(user.id))
 
          return user
      }
