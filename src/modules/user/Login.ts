@@ -1,4 +1,3 @@
-import { MyContext } from '../../typing-stubs/MyContext';
 import { Resolver, Mutation, Arg } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
