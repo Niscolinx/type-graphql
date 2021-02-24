@@ -21,11 +21,10 @@ export class ConfirmEmailResolver {
             return false
         }
     
-        const user = User.update(userId, {
+        await User.update(userId, {
             confirmedEmail: true
         })
 
-        await user.save()
 
         return true
         
