@@ -1,3 +1,4 @@
+import { ConfirmEmailResolver } from './modules/user/confirmUserEmail';
 import { CurrentUserResolver } from './modules/user/currentUser';
 import { LoginResolver } from './modules/user/Login';
 import 'reflect-metadata'
@@ -16,7 +17,7 @@ const main = async () => {
     await createConnection()
     
     const schema = await buildSchema({
-        resolvers: [RegisterResolver, LoginResolver, CurrentUserResolver],
+        resolvers: [RegisterResolver, LoginResolver, CurrentUserResolver, ConfirmEmailResolver],
     })
 
     const apolloServer = new ApolloServer({
