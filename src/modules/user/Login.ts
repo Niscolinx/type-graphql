@@ -18,7 +18,7 @@ export class LoginResolver {
         @Arg('email') email: string,
         @Arg('password') password: string,
         @Ctx() ctx:MyContext
-    ): Promise<User | null> {
+    ): Promise<User | null | string> {
         const user = await User.findOne({ where: { email } })
 
         if (!user) {
@@ -29,6 +29,10 @@ export class LoginResolver {
 
         if (!valid) {
             return null
+        }
+
+        if(!user.confirmedEmail){
+            return 'Please confirm your email'
         }
 
       
