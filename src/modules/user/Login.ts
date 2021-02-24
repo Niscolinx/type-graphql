@@ -31,15 +31,15 @@ export class LoginResolver {
             return null
         }
 
+        console.log('user confirmed email', user.confirmedEmail)
         if(!user.confirmedEmail){
             return 'Please confirm your email'
         }
 
       
-        console.log('the context =================', ctx.req.session)
-        console.log('the user id', user.id)
+      
 
-        ctx.req.session!.userId = user.id
+       // ctx.req.session!.userId = user.id
        // const theSession = ctx.req.session
 
         //theSession.userId = user.id
