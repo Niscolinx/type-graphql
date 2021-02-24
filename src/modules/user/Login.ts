@@ -17,7 +17,6 @@ export class LoginResolver {
     async Login(
         @Arg('email') email: string,
         @Arg('password') password: string,
-        @Ctx() ctx:MyContext
     ): Promise<User | null | string> {
         const user = await User.findOne({ where: { email } })
 
