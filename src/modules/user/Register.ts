@@ -1,3 +1,5 @@
+import { confirmEmail } from './../util/confirmEmail';
+import { sendEmail } from './../util/sendEmail';
 import { Resolver, Query, Mutation, Arg, FieldResolver, Root, UseMiddleware } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
@@ -30,6 +32,8 @@ export class RegisterResolver {
          const user = await User.create({
              firstName, lastName, email, password: hashedPassword
          }).save()
+
+         await sendEmail(email, await confirmEmail(user.id))
 
          return user
      }

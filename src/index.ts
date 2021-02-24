@@ -14,7 +14,7 @@ import cors from 'cors'
 
 const main = async () => {
     await createConnection()
-
+    
     const schema = await buildSchema({
         resolvers: [RegisterResolver, LoginResolver, CurrentUserResolver],
     })
