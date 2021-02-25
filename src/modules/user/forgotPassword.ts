@@ -24,9 +24,8 @@ export class ForgotPasswordResolver {
         const token = v4()
 
         
-        const forgotToken = await redis.set(forgotPassword + token, user.id, 'ex', 60 * 60)
+        await redis.set(forgotPassword + token, user.id, 'ex', 60 * 60)
         
-        console.log('forgot token is', forgotToken)
 
         await sendEmail(
             email,

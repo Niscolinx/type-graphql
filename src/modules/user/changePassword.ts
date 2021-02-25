@@ -22,6 +22,7 @@ export class ChangePasswordResolver {
         console.log('the token', token)
         const userId = await redis.get(forgotPassword + token)
 
+
         console.log({userId})
 
         if (!userId) {
