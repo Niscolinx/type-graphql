@@ -1,3 +1,4 @@
+import { confirmationToken } from './../constants/redisPrefixes';
 import { redis } from './../../redis';
 import { Resolver, Mutation, Arg } from 'type-graphql'
 import { User } from '../../entity/User'
@@ -15,7 +16,7 @@ export class ConfirmEmailResolver {
         @Arg('token') token: string,
     ): Promise<boolean>{
         
-        const userId = await redis.get(token)
+        const userId = await redis.get(confirmationToken + token)
 
         if(!userId){
             return false
@@ -25,7 +26,7 @@ export class ConfirmEmailResolver {
             confirmedEmail: true
         })
 
-        await redis.del(token)
+        await redis.del(confirmationToken + token)
 
 
         return true
