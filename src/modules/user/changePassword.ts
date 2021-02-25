@@ -1,5 +1,4 @@
-import { forgotPasswordToken } from './../constants/redisPrefixes'
-import { forgotPasswordInput } from './forgotPasswordInputs'
+import { changePasswordInput } from './changePasswordInputs'
 import { redis } from './../../redis'
 import { Resolver, Mutation, Arg } from 'type-graphql'
 import { User } from '../../entity/User'
@@ -16,7 +15,7 @@ declare module 'express-session' {
 @Resolver()
 export class ChangePasswordResolver {
     @Mutation(() => User, { nullable: true })
-    async changePassword(@Arg('data') email: string): Promise<User | null> {
+    async changePassword(@Arg('data') {token, password}: changePasswordInput): Promise<User | null> {
         const user = await User.findOne({ where: { email } })
 
         if (!user) {
