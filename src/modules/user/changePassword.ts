@@ -1,10 +1,10 @@
+import { MyContext } from './../../typing-stubs/MyContext';
+import { forgotPassword } from './../constants/redisPrefixes'
 import { changePasswordInput } from './changePasswordInputs'
 import { redis } from './../../redis'
-import { Resolver, Mutation, Arg } from 'type-graphql'
+import { Resolver, Mutation, Arg, Ctx } from 'type-graphql'
 import { User } from '../../entity/User'
 import bcrypt from 'bcryptjs'
-import { v4 } from 'uuid'
-import { sendEmail } from '../util/sendEmail'
 
 declare module 'express-session' {
     interface Session {
@@ -14,25 +14,29 @@ declare module 'express-session' {
 
 @Resolver()
 export class ChangePasswordResolver {
-    @Mutation(() => User, { nullable: true })
-    async changePassword(@Arg('data') {token, password}: changePasswordInput): Promise<User | null> {
-        const user = await User.findOne({ where: { email } })
+    @Mutation(() => Boolean, { nullable: true })
+    async changePassword(
+        @Arg('data') { token, password }: changePasswordInput,
+        @Ctx() ctx: MyContext
+    ): Promise<Boolean> {
+        const userId = await redis.get(forgotPassword + token)
 
-        if (!user) {
-            return null
+        if (!userId) {
+            return false
         }
 
-        const token = v4()
+        const user = await User.findOne(userId)
 
-        await redis.set(forgotPasswordToken + token, user.id, 'ex', 60 * 60)
+        if (!user) {
+            return false
+        }
 
-        await sendEmail(
-            email,
-            `http://localhost:3000/forgot-password/${
-                forgotPasswordToken + token
-            }`
-        )
+        user.password = await bcrypt.hash(password, 12)
 
-        return user
+        await user.save()
+
+        ctx.req.session.userId = user.id
+
+        return true
     }
 }
