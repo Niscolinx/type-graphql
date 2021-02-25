@@ -30,7 +30,7 @@ export class ForgotPasswordResolver {
         await sendEmail(
             email,
             `http://localhost:3000/forgot-password/${
-                forgotPassword + token
+                token
             }`
         )
 

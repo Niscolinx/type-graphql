@@ -8,5 +8,5 @@ export const confirmEmailUrl = async(userId: number) => {
 
     await redis.set(confirmationToken + token, userId, 'ex', 60 * 60 * 24)
 
-    return `http://localhost:3000/confirmEmail/${confirmationToken + token}`
+    return `http://localhost:3000/confirmEmail/${token}`
 }
