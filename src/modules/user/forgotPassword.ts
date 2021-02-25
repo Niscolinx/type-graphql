@@ -22,22 +22,10 @@ export class ForgotPasswordResolver {
             return null
         }
 
-
-
         const token = v4()
 
-        const userId = await redis.set(forgotPasswordToken + token)
+        await redis.set(forgotPasswordToken + token, user.id, 'ex', 60 * 60)
 
-        if (!userId) {
-            return false
-        }
-
-        await User.update(userId, {
-            confirmedEmail: true,
-        })
-
-        await redis.del(token)
-
-        return true
+        return user
     }
 }
