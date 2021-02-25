@@ -10,11 +10,10 @@ declare module 'express-session' {
 @Resolver()
 export class LogoutResolver {
     @Mutation(() => Boolean)
-    async currentUser(@Ctx() ctx: MyContext): Promise<User | undefined> {
-        if (!ctx.req.session!.userId) {
-            return undefined
-        }
-
-        return User.findOne(ctx.req.session!.userId)
+    async logout(@Ctx() ctx: MyContext): Promise<Boolean> {
+        return new Promise((resolve, reject) => {
+            
+        })
+     
     }
 }
