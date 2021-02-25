@@ -1,4 +1,3 @@
-
 import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server-express'
 import Express from 'express'
@@ -9,10 +8,9 @@ import connectRedis from 'connect-redis'
 import { redis } from './redis'
 import cors from 'cors'
 
-
 const main = async () => {
     await createConnection()
-    
+
     const schema = await buildSchema({
         resolvers: [__dirname, '../modules/**/*.ts'],
     })
@@ -26,10 +24,12 @@ const main = async () => {
 
     const RedisStore = connectRedis(session)
 
-    app.use(cors({
-        credentials: true,
-        origin: 'http://localhost:3000'
-    }))
+    app.use(
+        cors({
+            credentials: true,
+            origin: 'http://localhost:3000',
+        })
+    )
 
     app.use(
         session({
