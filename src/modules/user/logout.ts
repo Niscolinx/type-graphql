@@ -16,12 +16,11 @@ export class LogoutResolver {
             ctx.req.session.destroy((err) => {
 
                 if(err){
-                    console.log('error in destroying session', err)
-                    reject(false)
+                   return reject(false)
                 }
 
                 ctx.res.clearCookie('qid')
-                resolve(true)
+                return resolve(true)
             })
 
 
