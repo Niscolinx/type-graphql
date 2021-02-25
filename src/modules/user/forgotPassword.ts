@@ -27,14 +27,8 @@ export class ForgotPasswordResolver {
 
         await redis.set(forgotPasswordToken + token, user.id, 'ex', 60 * 60)
 
-
-       
-
-           return `http://localhost:3000/confirmEmail/${
-               confirmationToken + token
-           }`
-
-          await sendEmail(email, await confirmEmailUrl(user.id))
+          await sendEmail(email, `http://localhost:3000/confirmEmail/${
+               forgotPasswordToken + token)
 
 
         return user
