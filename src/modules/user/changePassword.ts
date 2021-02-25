@@ -21,6 +21,8 @@ export class ChangePasswordResolver {
     ): Promise<Boolean> {
         const userId = await redis.get(forgotPassword + token)
 
+        console.log({userId})
+
         if (!userId) {
             return false
         }
