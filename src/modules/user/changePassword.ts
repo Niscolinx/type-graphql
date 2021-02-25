@@ -19,6 +19,7 @@ export class ChangePasswordResolver {
         @Arg('data') { token, password }: changePasswordInput,
         @Ctx() ctx: MyContext
     ): Promise<Boolean> {
+        console.log('the token', token)
         const userId = await redis.get(forgotPassword + token)
 
         console.log({userId})
