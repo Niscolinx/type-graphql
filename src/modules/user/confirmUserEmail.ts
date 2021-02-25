@@ -25,6 +25,8 @@ export class ConfirmEmailResolver {
             confirmedEmail: true
         })
 
+        await redis.del(token)
+
 
         return true
         

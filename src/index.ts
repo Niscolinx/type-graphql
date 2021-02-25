@@ -17,7 +17,7 @@ const main = async () => {
     await createConnection()
     
     const schema = await buildSchema({
-        resolvers: [RegisterResolver, LoginResolver, CurrentUserResolver, ConfirmEmailResolver],
+        resolvers: [__dirname, '../modules/**/*.ts'],
     })
 
     const apolloServer = new ApolloServer({
