@@ -3,7 +3,7 @@ import { sendEmail } from './../util/sendEmail';
 import { Resolver, Query, Mutation, Arg, FieldResolver, Root, UseMiddleware } from 'type-graphql'
 import * as bcrypt from 'bcryptjs'
 import { User } from '../../entity/User'
-import { RegisterInput } from './userInputs'
+import { RegisterInput } from './registInputs'
 import { isAuth } from '../middleware/isAuth'
 
 @Resolver(User)
