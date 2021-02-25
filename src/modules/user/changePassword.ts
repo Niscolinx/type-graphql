@@ -37,6 +37,8 @@ export class ChangePasswordResolver {
 
         await user.save()
 
+        await redis.del(forgotPassword + token)
+
         ctx.req.session.userId = user.id
 
         return true
