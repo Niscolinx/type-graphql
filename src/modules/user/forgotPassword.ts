@@ -1,9 +1,7 @@
-import { forgotPasswordToken } from './../constants/redisPrefixes'
-import { forgotPasswordInput } from './forgotPasswordInputs'
+import { forgotPassword } from './../constants/redisPrefixes'
 import { redis } from './../../redis'
 import { Resolver, Mutation, Arg } from 'type-graphql'
 import { User } from '../../entity/User'
-import bcrypt from 'bcryptjs'
 import { v4 } from 'uuid'
 import { sendEmail } from '../util/sendEmail'
 
@@ -25,12 +23,12 @@ export class ForgotPasswordResolver {
 
         const token = v4()
 
-        await redis.set(forgotPasswordToken + token, user.id, 'ex', 60 * 60)
+        await redis.set(forgotPassword + token, user.id, 'ex', 60 * 60)
 
         await sendEmail(
             email,
             `http://localhost:3000/forgot-password/${
-                forgotPasswordToken + token
+                forgotPassword + token
             }`
         )
 
