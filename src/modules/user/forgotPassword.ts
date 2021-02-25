@@ -5,6 +5,7 @@ import { Resolver, Mutation, Arg } from 'type-graphql'
 import { User } from '../../entity/User'
 import bcrypt from 'bcryptjs'
 import { v4 } from 'uuid'
+import { sendEmail } from '../util/sendEmail'
 
 declare module 'express-session' {
     interface Session {
@@ -25,6 +26,16 @@ export class ForgotPasswordResolver {
         const token = v4()
 
         await redis.set(forgotPasswordToken + token, user.id, 'ex', 60 * 60)
+
+
+       
+
+           return `http://localhost:3000/confirmEmail/${
+               confirmationToken + token
+           }`
+
+          await sendEmail(email, await confirmEmailUrl(user.id))
+
 
         return user
     }
