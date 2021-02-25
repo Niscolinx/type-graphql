@@ -1,0 +1,39 @@
+import { forgotPasswordToken } from './../constants/redisPrefixes'
+import { forgotPasswordInput } from './forgotPasswordInputs'
+import { redis } from './../../redis'
+import { Resolver, Mutation, Arg } from 'type-graphql'
+import { User } from '../../entity/User'
+import bcrypt from 'bcryptjs'
+import { v4 } from 'uuid'
+import { sendEmail } from '../util/sendEmail'
+
+declare module 'express-session' {
+    interface Session {
+        userId: number
+    }
+}
+
+@Resolver()
+export class ChangePasswordResolver {
+    @Mutation(() => User, { nullable: true })
+    async changePassword(@Arg('data') email: string): Promise<User | null> {
+        const user = await User.findOne({ where: { email } })
+
+        if (!user) {
+            return null
+        }
+
+        const token = v4()
+
+        await redis.set(forgotPasswordToken + token, user.id, 'ex', 60 * 60)
+
+        await sendEmail(
+            email,
+            `http://localhost:3000/forgot-password/${
+                forgotPasswordToken + token
+            }`
+        )
+
+        return user
+    }
+}
