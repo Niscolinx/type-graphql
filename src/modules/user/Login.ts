@@ -41,10 +41,7 @@ export class LoginResolver {
         console.log('the user id', user.id)
 
         ctx.req.session!.userId = user.id
-       // const theSession = ctx.req.session
 
-        //theSession.userId = user.id
-        console.log({user})
         return user
     }
 }

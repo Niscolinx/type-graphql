@@ -1,3 +1,4 @@
+import { forgotPasswordInput } from './forgotPasswordInputs';
 import { redis } from './../../redis';
 import { Resolver, Mutation, Arg } from 'type-graphql'
 import { User } from '../../entity/User'
@@ -12,7 +13,7 @@ declare module 'express-session' {
 export class ForgotPasswordResolver {
     @Mutation(() => User, {nullable: true})
     async forgotPassword(
-        @Arg('data') token: string,
+        @Arg('data') {token, password}: forgotPasswordInput,
     ): Promise<boolean>{
         
         const userId = await redis.get(token)
