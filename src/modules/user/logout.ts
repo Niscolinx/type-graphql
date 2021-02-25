@@ -1,5 +1,5 @@
 import { MyContext } from '../../typing-stubs/MyContext'
-import { Resolver, Query, Ctx } from 'type-graphql'
+import { Resolver, Mutation, Ctx } from 'type-graphql'
 
 declare module 'express-session' {
     interface Session {
@@ -9,7 +9,7 @@ declare module 'express-session' {
 
 @Resolver()
 export class LogoutResolver {
-    @Query(() => User, { nullable: true })
+    @Mutation(() => Boolean)
     async currentUser(@Ctx() ctx: MyContext): Promise<User | undefined> {
         if (!ctx.req.session!.userId) {
             return undefined
