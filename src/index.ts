@@ -1,12 +1,9 @@
-import { ConfirmEmailResolver } from './modules/user/confirmUserEmail';
-import { CurrentUserResolver } from './modules/user/currentUser';
-import { LoginResolver } from './modules/user/Login';
+
 import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server-express'
 import Express from 'express'
 import { buildSchema } from 'type-graphql'
 import { createConnection } from 'typeorm'
-import { RegisterResolver } from './modules/user/Register'
 import session from 'express-session'
 import connectRedis from 'connect-redis'
 import { redis } from './redis'
