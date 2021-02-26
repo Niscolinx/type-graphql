@@ -1,10 +1,13 @@
 import { Length } from 'class-validator'
-import { InputType, Field } from 'type-graphql'
+import { InputType, Field, ClassType } from 'type-graphql'
 
-@InputType()
-export class sharedInput {
- 
-    @Field()
-    @Length(1, 255)
-    password: string
+export const PasswordMixin = <T extends ClassType>(BaseClass: T) => {
+    @InputType()
+    class SharedInput extends BaseClass {
+        @Field()
+        @Length(1, 255)
+        password: string
+    }
+
+    return SharedInput
 }
