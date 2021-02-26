@@ -1,4 +1,4 @@
-import { Length, Min } from 'class-validator'
+import { Min } from 'class-validator'
 import { InputType, Field, ClassType } from 'type-graphql'
 
 export const PasswordMixin = <T extends ClassType>(BaseClass: T) => {
