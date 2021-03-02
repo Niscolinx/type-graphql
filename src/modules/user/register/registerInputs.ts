@@ -1,4 +1,4 @@
-import { sharedInput } from './../shared/sharedInput';
+import { sharedInput } from '../../shared/sharedInput';
 import { IsEmailAlreadyExist } from './doesEmailExist';
 import { Length, IsEmail } from 'class-validator'
 import { InputType, Field } from 'type-graphql'
