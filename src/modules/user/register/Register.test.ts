@@ -9,5 +9,5 @@ beforeAll(async() => {
 })
 
 afterAll(async () => {
-    conn = await (await testConn()).close()
+   await conn.close()
 })
