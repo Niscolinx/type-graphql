@@ -13,8 +13,25 @@ afterAll(async () => {
    await conn.close()
 })
 
+// const testRegisterMutation = `mutation {
+//   register(
+//     data: {
+//       firstName: "John"
+//       lastName: "doe"
+//       password: "johndoe"
+//       email: "johndoe6@gmail.com"
+//     }
+//   ) {
+//     name
+//     id
+//     firstName
+//     lastName
+//     email
+//   }
+// }`
+
 const registerMutation = `
-mutation Register ($data: RegisterInput!){
+mutation register ($data: RegisterInput!){
   register(
     data: $data
   ) {
