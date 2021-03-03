@@ -11,10 +11,7 @@ import cors from 'cors'
 const main = async () => {
     await createConnection()
 
-    const schema = await buildSchema({
-        resolvers: [__dirname + '/modules/**/*.ts'],
-    })
-
+    const schema =
     const apolloServer = new ApolloServer({
         schema,
         context: ({ req, res }: any) => ({ req, res }),
