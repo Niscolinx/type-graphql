@@ -13,7 +13,7 @@ afterAll(async () => {
 })
 
 const registerMutation = `
-mutation {
+mutation Register ($data: RegisterInput!){
   register(
     data: {
       firstName: "John"
