@@ -1,3 +1,4 @@
+import { graphqlCall } from './../../../test-util/graphqlCall';
 import { testConn } from './../../../test-util/testConn';
 import { Connection } from 'typeorm';
 
@@ -27,6 +28,15 @@ mutation Register ($data: RegisterInput!){
 describe('Register',  () => {
     it('creates user', async() => {
        
-      console.log()
+      console.log(await graphqlCall({
+        source: registerMutation,
+        variableValues: {
+          data: {
+            firstName: 'bob',
+            lastName: 'hello',
+            email: 'bob@gmail.com'
+          }
+        }
+      }))
     } )
 })
