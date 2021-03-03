@@ -1,7 +1,9 @@
+import { createSchema } from './../util/createSchema';
 import { graphql } from 'graphql';
-export const graphqlCall = () => {
+
+export const graphqlCall = async() => {
 return graphql({
-    schema
+    schema: await createSchema()
 })
     
 }

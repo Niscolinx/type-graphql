@@ -1,7 +1,7 @@
+import { createSchema } from './util/createSchema';
 import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server-express'
 import Express from 'express'
-import { buildSchema } from 'type-graphql'
 import { createConnection } from 'typeorm'
 import session from 'express-session'
 import connectRedis from 'connect-redis'
@@ -11,7 +11,7 @@ import cors from 'cors'
 const main = async () => {
     await createConnection()
 
-    const schema =
+    const schema = await createSchema()
     const apolloServer = new ApolloServer({
         schema,
         context: ({ req, res }: any) => ({ req, res }),
