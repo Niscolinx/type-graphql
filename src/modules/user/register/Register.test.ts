@@ -34,7 +34,8 @@ describe('Register',  () => {
           data: {
             firstName: 'bob',
             lastName: 'hello',
-            email: 'bob@gmail.com'
+            email: 'bob@gmail.com',
+            password: 'bobhello'
           }
         }
       }))
