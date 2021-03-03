@@ -11,3 +11,7 @@ beforeAll(async() => {
 afterAll(async () => {
    await conn.close()
 })
+
+describe('Register',  () => {
+    it('creates user', )
+})
