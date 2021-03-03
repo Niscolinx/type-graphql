@@ -1,16 +1,15 @@
-import { graphqlCall } from './../../../test-util/graphqlCall';
-import { testConn } from './../../../test-util/testConn';
-import { Connection } from 'typeorm';
+import { graphqlCall } from './../../../test-util/graphqlCall'
+import { testConn } from './../../../test-util/testConn'
+import { Connection } from 'typeorm'
 
-let conn:Connection
+let conn: Connection
 
-beforeAll(async() => {
-
-   conn =  await testConn()
+beforeAll(async () => {
+    conn = await testConn()
 })
 
 afterAll(async () => {
-   await conn.close()
+    await conn.close()
 })
 
 // const testRegisterMutation = `mutation {
@@ -31,28 +30,27 @@ afterAll(async () => {
 // }`
 
 const registerMutation = `
-mutation register ($data: RegisterInput!){
+mutation Register ($data: RegisterInput!){
  register(data: $data){
-    name
     id
     firstName
     lastName
     email
   }
 }`
-describe('Register',  () => {
-    it('creates user', async() => {
-       
-      console.log(await graphqlCall({
-        source: registerMutation,
-        variableValues: {
-          data: {
-            firstName: "bob",
-            lastName: "hello",
-            email: "bob@gmail.com",
-            password: "bobhello"
-          }
-        }
-      }))
-    } )
+describe('Register', () => {
+    it('creates user', async () => {
+        console.log(
+            await graphqlCall({
+                source: registerMutation,
+                variableValues: {
+                    data: {
+                      firstName: "bob",
+                      lastName: "hello",
+                      email: "bob@gmail.com",
+                    },
+                },
+            })
+        )
+    })
 })
