@@ -32,7 +32,7 @@ afterAll(async () => {
 
 const registerMutation = `
 mutation register ($data: RegisterInput!){
- register(data: data){
+ register(data: $data){
     name
     id
     firstName
@@ -47,10 +47,10 @@ describe('Register',  () => {
         source: registerMutation,
         variableValues: {
           data: {
-            firstName: 'bob',
-            lastName: 'hello',
-            email: 'bob@gmail.com',
-            password: 'bobhello'
+            firstName: "bob",
+            lastName: "hello",
+            email: "bob@gmail.com",
+            password: "bobhello"
           }
         }
       }))
