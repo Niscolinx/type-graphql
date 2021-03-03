@@ -1,10 +1,10 @@
 import { sharedInput } from '../../shared/sharedInput';
 import { IsEmailAlreadyExist } from './doesEmailExist';
-import { Length, IsEmail } from 'class-validator'
+import { Length, IsEmail, Min } from 'class-validator'
 import { InputType, Field } from 'type-graphql'
 
 @InputType()
-export class RegisterInput extends sharedInput{
+export class RegisterInput{
     @Field()
     @Length(1, 255)
     firstName: string
@@ -17,5 +17,9 @@ export class RegisterInput extends sharedInput{
     @IsEmail()
     @IsEmailAlreadyExist({message: 'Email already exits'})
     email: string
+
+    @Field()
+    @Min(3)
+    password: string
  
 }
