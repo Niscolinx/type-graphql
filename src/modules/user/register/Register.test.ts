@@ -15,12 +15,7 @@ afterAll(async () => {
 const registerMutation = `
 mutation Register ($data: RegisterInput!){
   register(
-    data: {
-      firstName: "John"
-      lastName: "doe"
-      password: "johndoe"
-      email: "johndoe6@gmail.com"
-    }
+    data: $data
   ) {
     name
     id
@@ -32,5 +27,6 @@ mutation Register ($data: RegisterInput!){
 describe('Register',  () => {
     it('creates user', async() => {
        
+      console.log()
     } )
 })
