@@ -14,7 +14,6 @@ afterAll(async () => {
     await conn.close()
 })
 
-
 const registerMutation = `
 mutation Register ($data: RegisterInput!){
  register(data: $data){
@@ -26,13 +25,17 @@ mutation Register ($data: RegisterInput!){
 }`
 describe('Register', () => {
     it('creates user', async () => {
-        console.log(
-            await graphqlCall({
-                source: registerMutation,
-                variableValues: {
-                    data: user
-                },
-            })
-        )
+        const user = {
+            firstName: faker.name.firstName(),
+            lastName: faker.name.lastName(),
+            email: faker.internet.email(),
+            password: faker.internet.password(),
+        }
+        await graphqlCall({
+            source: registerMutation,
+            variableValues: {
+                data: user,
+            },
+        })
     })
 })
