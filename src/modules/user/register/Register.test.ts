@@ -31,10 +31,10 @@ describe('Register', () => {
                 source: registerMutation,
                 variableValues: {
                     data: {
-                      firstName: "bob",
-                      lastName: "hello",
-                      email: "bob@gmail.com",
-                      password: "hellow"
+                      firstName: faker.name.firstName,
+                      lastName: faker.name.lastName,
+                      email: faker.internet.email,
+                      password: faker.internet.password
                     },
                 },
             })
