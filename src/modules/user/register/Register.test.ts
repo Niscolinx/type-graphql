@@ -49,7 +49,7 @@ describe('Register', () => {
             },
         })
 
-        const dbUser: any = await User.findOne({
+        const dbUser = await User.findOne({
             where: {
                 email: user.email,
             },
@@ -58,6 +58,6 @@ describe('Register', () => {
         
         expect(dbUser).toBeDefined()
         expect(dbUser!.confirmedEmail).toBeFalsy()
-        expect(dbUser!.firstName).toBe(user.lastName)
+        expect(dbUser!.firstName).toBe(user.firstName)
     })
 })
