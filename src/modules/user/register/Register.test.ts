@@ -58,6 +58,6 @@ describe('Register', () => {
         
         expect(dbUser).toBeDefined()
         expect(dbUser!.confirmedEmail).toBeFalsy()
-        expect(dbUser!.firstName).toBe(user.firstName)
+        expect(dbUser!.firstName).toBe(user.lastName)
     })
 })
