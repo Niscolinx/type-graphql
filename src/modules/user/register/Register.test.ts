@@ -54,8 +54,6 @@ describe('Register', () => {
                 email: user.email,
             },
         })
-
-            console.log('data of registered user', await dbUser)
         
         expect(dbUser).toBeDefined()
       

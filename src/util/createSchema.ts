@@ -7,18 +7,9 @@
 // import { RegisterResolver } from './../modules/user/Register';
 import { buildSchema } from "type-graphql"
 
-export const createSchema = () => 
- buildSchema({
+export const createSchema = async() => {
+  return await buildSchema({
         resolvers: [__dirname + '/../modules/*/*.ts'],
-
-        // resolvers: [
-        //     RegisterResolver,
-        //     LoginResolver,
-        //     ChangePasswordResolver,
-        //     ConfirmEmailResolver,
-        //     CurrentUserResolver,
-        //     ForgotPasswordResolver,
-        //     LogoutResolver
-        // 
     })
 
+}
