@@ -32,21 +32,13 @@ describe('Register', () => {
             email: faker.internet.email(),
             password: faker.internet.password(),
         }).save()
+
         const response = await graphqlCall({
             source: currentuserMutation,
             userId: user.id
         })
 
-        // expect(response).toMatchObject({
-        //     data: {
-        //         register: {
-        //             firstName: user.firstName,
-        //             lastName: user.lastName,
-        //             email: user.email,
-        //         },
-        //     },
-        // })
-
+      
         console.log(response)
 
     
