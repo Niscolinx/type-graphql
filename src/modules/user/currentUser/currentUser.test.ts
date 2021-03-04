@@ -15,7 +15,7 @@ afterAll(async () => {
     await conn.close()
 })
 
-const currentuserQuery = `
+const currentUserQuery = `
 {
  currentUser{
     id
@@ -34,7 +34,7 @@ describe('Current User', () => {
         }).save()
 
         const response = await graphqlCall({
-            source: currentuserQuery,
+            source: currentUserQuery,
             userId: user.id
         })
 
@@ -43,7 +43,7 @@ describe('Current User', () => {
 
         expect(response).toMatchObject({
             data: {
-                currentuserQuery: {
+                currentUser: {
                     id: `${user.id}`,
                     firstName: user.firstName,
                     lastName: user.lastName,
@@ -56,12 +56,12 @@ describe('Current User', () => {
        
 
         const response = await graphqlCall({
-            source: currentuserQuery,
+            source: currentUserQuery,
         })
 
         expect(response).toMatchObject({
             data: {
-                currentuserQuery: null
+                currentUser: null
             }
         })
     })
