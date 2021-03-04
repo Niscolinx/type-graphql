@@ -1,3 +1,4 @@
+import { User } from './../../../entity/User'
 import { Connection } from 'typeorm'
 import faker from 'faker'
 
@@ -37,16 +38,21 @@ describe('Register', () => {
                 data: user,
             },
         })
+
         expect(response).toMatchObject({
             data: {
-                register :{
+                register: {
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    email: user.email
-                }
-            }
+                    email: user.email,
+                },
+            },
+        })
+
+        const dbUser = User.findOne({
+            where: {
+                email: user.email,
+            },
         })
     })
-
-
 })
