@@ -1,6 +1,8 @@
+import { Connection } from 'typeorm'
+import faker from 'faker'
+
 import { graphqlCall } from './../../../test-util/graphqlCall'
 import { testConn } from './../../../test-util/testConn'
-import { Connection } from 'typeorm'
 
 let conn: Connection
 
@@ -12,22 +14,6 @@ afterAll(async () => {
     await conn.close()
 })
 
-// const testRegisterMutation = `mutation {
-//   register(
-//     data: {
-//       firstName: "John"
-//       lastName: "doe"
-//       password: "johndoe"
-//       email: "johndoe6@gmail.com"
-//     }
-//   ) {
-//     name
-//     id
-//     firstName
-//     lastName
-//     email
-//   }
-// }`
 
 const registerMutation = `
 mutation Register ($data: RegisterInput!){
@@ -38,9 +24,9 @@ mutation Register ($data: RegisterInput!){
     email
   }
 }`
-describe('Register', async() => {
+describe('Register', () => {
     it('creates user', async () => {
-       await console.log(
+        console.log(
             await graphqlCall({
                 source: registerMutation,
                 variableValues: {
