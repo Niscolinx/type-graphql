@@ -3,7 +3,7 @@ import faker from 'faker'
 
 import { graphqlCall } from './../../../test-util/graphqlCall'
 import { testConn } from './../../../test-util/testConn'
-import { User } from 'src/entity/User'
+import { User } from '../../../entity/User'
 
 let conn: Connection
 
