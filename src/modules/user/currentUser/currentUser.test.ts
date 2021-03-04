@@ -52,4 +52,17 @@ describe('Current User', () => {
             }
         })
     })
+    it('no current user', async () => {
+       
+
+        const response = await graphqlCall({
+            source: currentuserQuery,
+        })
+
+        expect(response).toMatchObject({
+            data: {
+                currentuserQuery: null
+            }
+        })
+    })
 })
