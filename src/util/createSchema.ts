@@ -7,7 +7,7 @@ import { LoginResolver } from './../modules/user/Login';
 import { RegisterResolver } from './../modules/user/Register';
 import { buildSchema } from "type-graphql"
 
-export const createSchema = () => {
+export const createSchema = () => 
  buildSchema({
         //resolvers: [__dirname + '/../modules/*/*.ts'],
 
@@ -22,4 +22,3 @@ export const createSchema = () => {
         ]
     })
 
-}
