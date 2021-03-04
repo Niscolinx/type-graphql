@@ -3,6 +3,7 @@ import faker from 'faker'
 
 import { graphqlCall } from './../../../test-util/graphqlCall'
 import { testConn } from './../../../test-util/testConn'
+import { User } from 'src/entity/User'
 
 let conn: Connection
 
@@ -40,25 +41,25 @@ describe('Register', () => {
 
         console.log(response)
 
-        // expect(response).toMatchObject({
-        //     data: {
-        //         register: {
-        //             firstName: user.firstName,
-        //             lastName: user.lastName,
-        //             email: user.email,
-        //         },
-        //     },
-        // })
+        expect(response).toMatchObject({
+            data: {
+                register: {
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                },
+            },
+        })
 
-        // const dbUser = await User.findOne({
-        //     where: {
-        //         email: user.email,
-        //     },
-        // })
+        const dbUser = await User.findOne({
+            where: {
+                email: user.email,
+            },
+        })
        
         
-        // expect(dbUser).toBeDefined()
-        // expect(dbUser!.confirmedEmail).toBeFalsy()
-        // expect(dbUser!.firstName).toBe(user.firstName)
+        expect(dbUser).toBeDefined()
+        expect(dbUser!.confirmedEmail).toBeFalsy()
+        expect(dbUser!.firstName).toBe(user.firstName)
     })
 })
