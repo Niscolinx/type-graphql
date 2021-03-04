@@ -1,4 +1,3 @@
-import { session } from 'express-session';
 import { createSchema } from './../util/createSchema';
 import { graphql, GraphQLSchema } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
@@ -8,12 +7,12 @@ interface Options {
     variableValues?: Maybe<{
         [key: string]: any
     }>,
-    userid?: number
+    userId?: number
 }
 
 let schema: GraphQLSchema
 
-export const graphqlCall = async({source, variableValues}: Options, userId) => {
+export const graphqlCall = async({source, variableValues, userId}: Options) => {
     if(!schema){
         schema = await createSchema()
     }
