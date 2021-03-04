@@ -7,13 +7,6 @@ import { testConn } from './../../../test-util/testConn'
 
 let conn: Connection
 
-interface UserData {
-    name: string
-    firstName: string
-    lastName: string
-    email: string
-}
-
 beforeAll(async () => {
     conn = await testConn()
 })
@@ -32,7 +25,7 @@ mutation Register ($data: RegisterInput!){
   }
 }`
 describe('Register', () => {
-    it('creates user', async ():Promise<UserData> => {
+    it('creates user', async () => {
         const user = {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
@@ -56,7 +49,7 @@ describe('Register', () => {
             },
         })
 
-        const dbUser: UserData= await User.findOne({
+        const dbUser: any = await User.findOne({
             where: {
                 email: user.email,
             },
@@ -66,8 +59,7 @@ describe('Register', () => {
         })
         
         expect(dbUser).toBeDefined()
-        expect(dbUser!.email).toBe(user.email)
-      
-        return User
+        expect(dbUser!.confirmedEmail).toBeFalsy()
+        expect(dbUser!.firstName).toBe(user.firstName)
     })
 })
