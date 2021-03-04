@@ -19,7 +19,7 @@ export const sendEmail = async(email: string, url: string) => {
     })
 
     // send mail with defined transport object
-    let info = await transporter.sendMail({
+     let info = await transporter.sendMail({
         from: '"Fred Foo 👻" <foo@example.com>', // sender address
         to: email, // list of receivers
         subject: 'From Send Email Nodemailer', // Subject line

@@ -1,3 +1,4 @@
+import { User } from './../../../entity/User'
 import { Connection } from 'typeorm'
 import faker from 'faker'
 
@@ -48,15 +49,15 @@ describe('Register', () => {
             },
         })
 
-        // const dbUser: any = await User.findOne({
-        //     where: {
-        //         email: user.email,
-        //     },
-        // })
+        const dbUser: any = await User.findOne({
+            where: {
+                email: user.email,
+            },
+        })
        
         
-        // expect(dbUser).toBeDefined()
-        // expect(dbUser!.confirmedEmail).toBeFalsy()
-        // expect(dbUser!.firstName).toBe(user.firstName)
+        expect(dbUser).toBeDefined()
+        expect(dbUser!.confirmedEmail).toBeFalsy()
+        expect(dbUser!.firstName).toBe(user.firstName)
     })
 })
