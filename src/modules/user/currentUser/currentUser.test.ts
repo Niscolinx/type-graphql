@@ -24,8 +24,8 @@ const currentuserMutation = `
     email
   }
 }`
-describe('Register', () => {
-    it('creates user', async () => {
+describe('Current User', () => {
+    it('get user', async () => {
         const user = await User.create({
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
