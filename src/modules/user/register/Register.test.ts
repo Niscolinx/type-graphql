@@ -55,10 +55,10 @@ describe('Register', () => {
             },
         })
 
-        dbUser.then((data) => {
+        await dbUser.then((data) => {
             console.log('data of registered user', data)
         })
         expect(dbUser).toBeDefined()
-     
+      
     })
 })
