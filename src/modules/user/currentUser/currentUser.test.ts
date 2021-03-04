@@ -41,6 +41,15 @@ describe('Current User', () => {
       
         console.log(response)
 
-    
+        expect(response).toMatchObject({
+            data: {
+                currentuserQuery: {
+                    id: `${user.id}`,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email
+                }
+            }
+        })
     })
 })
