@@ -19,6 +19,6 @@ export const createSchema = () =>
         //     CurrentUserResolver,
         //     ForgotPasswordResolver,
         //     LogoutResolver
-        // ]
+        // 
     })
 
