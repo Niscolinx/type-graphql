@@ -38,9 +38,9 @@ mutation Register ($data: RegisterInput!){
     email
   }
 }`
-describe('Register', () => {
+describe('Register', async() => {
     it('creates user', async () => {
-        console.log(
+       await console.log(
             await graphqlCall({
                 source: registerMutation,
                 variableValues: {
@@ -48,6 +48,7 @@ describe('Register', () => {
                       firstName: "bob",
                       lastName: "hello",
                       email: "bob@gmail.com",
+                      password: "hellow"
                     },
                 },
             })
