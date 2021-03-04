@@ -31,11 +31,22 @@ describe('Register', () => {
             email: faker.internet.email(),
             password: faker.internet.password(),
         }
-        await graphqlCall({
+        const response = await graphqlCall({
             source: registerMutation,
             variableValues: {
                 data: user,
             },
         })
+    })
+
+
+    expect(response).toMatchObject({
+        data: {
+            register :{
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            }
+        }
     })
 })
