@@ -54,9 +54,7 @@ describe('Register', () => {
                 email: user.email,
             },
         })
-        .then(data => {
-            console.log({data})
-        })
+       
         
         expect(dbUser).toBeDefined()
         expect(dbUser!.confirmedEmail).toBeFalsy()

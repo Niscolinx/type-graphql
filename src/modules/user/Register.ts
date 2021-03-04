@@ -33,13 +33,7 @@ export class RegisterResolver {
              firstName, lastName, email, password: hashedPassword
          }).save()
 
-         await sendEmail(email, await confirmEmailUrl(user.id)).then(
-             email => {
-                 console.log('email from register', email)
-             }
-         ).catch(err => {
-             console.log('err from register', err)
-         })
+         await sendEmail(email, await confirmEmailUrl(user.id))
 
          return user
      }
