@@ -30,12 +30,7 @@ describe('Register', () => {
             await graphqlCall({
                 source: registerMutation,
                 variableValues: {
-                    data: {
-                      firstName: faker.name.firstName,
-                      lastName: faker.name.lastName,
-                      email: faker.internet.email,
-                      password: faker.internet.password
-                    },
+                    data: user
                 },
             })
         )
