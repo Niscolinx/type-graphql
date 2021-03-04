@@ -55,9 +55,8 @@ describe('Register', () => {
             },
         })
 
-        await dbUser.then((data) => {
-            console.log('data of registered user', data)
-        })
+            console.log('data of registered user', await dbUser)
+        
         expect(dbUser).toBeDefined()
       
     })
