@@ -37,16 +37,16 @@ describe('Register', () => {
                 data: user,
             },
         })
-    })
-
-
-    expect(response).toMatchObject({
-        data: {
-            register :{
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email
+        expect(response).toMatchObject({
+            data: {
+                register :{
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email
+                }
             }
-        }
+        })
     })
+
+
 })
