@@ -15,7 +15,7 @@ afterAll(async () => {
     await conn.close()
 })
 
-const currentuserMutation = `
+const currentuserQuery = `
 {
  currentUser{
     id
@@ -34,7 +34,7 @@ describe('Current User', () => {
         }).save()
 
         const response = await graphqlCall({
-            source: currentuserMutation,
+            source: currentuserQuery,
             userId: user.id
         })
 
