@@ -6,7 +6,7 @@ import { createWriteStream } from "fs";
 @Resolver()
 export class ProfilePictureResolver{
     @Mutation(() => Boolean)
-    async addProfilePicture(@Arg("picture", () => GraphQLUpload) {
+    async AddProfilePicture(@Arg("picture", () => GraphQLUpload) {
         createReadStream,
         filename
     }:Upload): Promise<boolean> {
