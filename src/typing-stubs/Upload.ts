@@ -4,5 +4,5 @@ export interface Upload {
     name: string
     mimeType: string
     file: string
-    createStream: () => Stream
+    createReadStream: () => Stream
 }

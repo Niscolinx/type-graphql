@@ -6,7 +6,11 @@ import { Upload } from "src/typing-stubs/Upload";
 export class ProfilePictureResolver{
     @Mutation(() => Boolean)
     async addProfilePicture(@Arg("picture", () => GraphQLUpload) {
-        createStream,
+        createReadStream,
         file
-    }:Upload): Promise<Boolean>
+    }:Upload): Promise<boolean> {
+        return new Promise(async(resolve, reject) => {
+            createReadStream
+        })
+    }
 }
