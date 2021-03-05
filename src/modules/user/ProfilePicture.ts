@@ -1,15 +1,14 @@
-import { Resolver, Mutation, Arg } from "type-graphql";
-import { GraphQLUpload } from "graphql-upload";
-import { Upload } from "src/typing-stubs/Upload";
+import { Resolver, Mutation, Args } from "type-graphql";
 import { createWriteStream } from "fs";
+import { GraphQLUpload } from "apollo-server-express";
 
 @Resolver()
 export class ProfilePictureResolver{
     @Mutation(() => Boolean)
-    async addProfilePicture(@Arg("picture", () => GraphQLUpload) {
+    async addProfilePicture(@Args({name:"picture", type: async() => GraphQLUpload}) {
         createReadStream,
         filename
-    }:Upload): Promise<boolean> {
+    }): Promise<boolean> {
         return new Promise(async(resolve, reject) => {
             console.log('picture upload')
             createReadStream()
