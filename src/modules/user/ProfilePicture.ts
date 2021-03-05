@@ -6,11 +6,12 @@ import { createWriteStream } from "fs";
 @Resolver()
 export class ProfilePictureResolver{
     @Mutation(() => Boolean)
-    async AddProfilePicture(@Arg("picture", () => GraphQLUpload) {
+    async addProfilePicture(@Arg("picture", () => GraphQLUpload) {
         createReadStream,
         filename
     }:Upload): Promise<boolean> {
         return new Promise(async(resolve, reject) => {
+            console.log('picture upload')
             createReadStream()
             .pipe(createWriteStream(__dirname + `../../images/${filename}`))
             .on('finish', () => resolve(true))
