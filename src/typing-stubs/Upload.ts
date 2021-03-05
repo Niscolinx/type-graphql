@@ -1,7 +1,7 @@
 import { Stream } from "stream";
 
 export interface Upload {
-    name: string
+    filename: string
     mimeType: string
     file: string
     createReadStream: () => Stream
