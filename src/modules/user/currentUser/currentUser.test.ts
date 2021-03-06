@@ -39,8 +39,6 @@ describe('Current User', () => {
         })
 
       
-        console.log(response)
-
         expect(response).toMatchObject({
             data: {
                 currentUser: {
