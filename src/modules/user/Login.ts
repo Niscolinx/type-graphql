@@ -21,6 +21,8 @@ export class LoginResolver {
     ): Promise<User | null | string> {
         const user = await User.findOne({ where: { email } })
 
+        console.log('login user')
+
         if (!user) {
             return null
         }
